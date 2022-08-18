@@ -1,4 +1,32 @@
+#[warn(dead_code)]
 fn main() {
+    general_println();
+    general_display();
+}
+
+#[derive(Debug)]
+struct Person<'a> {
+    name: &'a str,
+    age: u8,
+}
+
+fn general_display() {
+    println!("inside general_display()");
+    println!("");
+
+    let name = "Peter";
+    let age = 27;
+    let peter = Person { name, age };
+
+    // println
+    println!("{:#?}", peter);
+
+}
+
+
+fn general_println() {
+    println!("inside general_println()");
+    println!("");
     // In general, the `{}` will be automatically replaced with any
     // arguments. These will be stringified.
     println!("{} days", 31);
@@ -65,4 +93,17 @@ fn main() {
     const PI: f64 = 3.14159265359;
     println!("PI is roughly {PI:.4}");
 
+
+}
+
+use std::fmt;
+
+// This is a tuple struct named `Structure` that contains an i32
+struct Structure(i32);
+
+// To use `{}` marker the trait `fmt::Display` must be implemented
+impl fmt::Display for Structure {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.0)
+    }
 }
