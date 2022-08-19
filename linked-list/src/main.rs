@@ -63,4 +63,5 @@ fn main() {
     // Show the final state of the list
     println!("linked list has length: {}", list.len());
     println!("{}", list.stringify());
+    assert_eq!("3, 2, 1, Nil", list.stringify());
 }
