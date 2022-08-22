@@ -5,6 +5,27 @@ fn main() {
     destructure_reference();
     destructure_structs();
     match_guard();
+    variable_binding();
+}
+
+fn variable_binding() {
+    let age: u32 = 18;
+    println!("Tell me what type of person you are");
+
+    match age {
+        0 => println!("I haven't celebrated my 1st birthday yet."),
+        n @ 1 ..=12 => println!("I'm a child of age {:?}", n),
+        n @ 13..=19 => println!("I'm a teen of age {:?}", n),
+        n => println!("I'm an old person of age {:?}", n),
+    }
+
+    let some_number = Some(42);
+
+    match some_number {
+        Some(n @ 42) => println!("The Answer: {}!", n),
+        Some(n) => println!("Not interesting... {}", n),
+        _ => (),
+    }
 }
 
 fn destructure_tuples() {
