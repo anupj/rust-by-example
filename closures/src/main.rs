@@ -1,14 +1,22 @@
-/*fn main() {
-    fn function(i: i32) -> i32 {i + 1}
+fn create_fn() -> impl Fn() { // returns closure that implements trait Fn
+    let text = "Fn".to_owned();
 
-    // both closures below are the same
-    // one of them is explicitly annotated
-    // the other is inferred
-    let closure_annotated = |i: i32| -> i32 { i + 1 };
-    let closure_inferred  = |i     |          i + 1  ;
+    move || println!("This is a: {}", text)
+}
 
-    let i = 1;
-} */
+fn create_fnmut() -> impl FnMut() {
+    let text = "FnMut".to_owned();
+
+    move || println!("This is a: {}", text)
+}
+
+fn create_fnonce() -> impl FnOnce() {
+    let text = "FnOnce".to_owned();
+
+    move || println!("This is a: {}", text)
+}
+
+
 fn main() {
     // Increment via closures and functions.
     fn function(i: i32) -> i32 { i + 1 }
@@ -94,6 +102,16 @@ fn main() {
 
     println!("{}", contains(&1));
     println!("{}", contains(&2));
+
+    // declaring and calling functions
+    // that return closures
+    let fn_plain = create_fn();
+    let mut fn_mut = create_fnmut();
+    let fn_once = create_fnonce();
+
+    fn_plain();
+    fn_mut();
+    fn_once();
 
 
 }
