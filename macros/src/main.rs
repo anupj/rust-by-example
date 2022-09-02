@@ -44,7 +44,7 @@ macro_rules! test {
         println!("{:?} and {:?} is {:?}",
                  stringify!($left),
                  stringify!($right),
-                 $left && $right) // what does && do again?
+                 $left && $right) 
     };
     // ^ each arm must end with a semicolon.
     ($left:expr; or $right:expr) => {
