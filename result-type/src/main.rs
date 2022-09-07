@@ -34,7 +34,30 @@ mod checked {
             Ok(x.ln())
         }
     }
+
+    // Intermediate function
+    fn op_(x: f64, y: f64) -> MathResult {
+        let ratio = div(x,y)?;
+        let ln = ln(ratio)?;
+        sqrt(ln)
+    }
+
+    pub fn op(x: f64, y: f64) {
+        match op_(x, y) {
+            Err(why) => panic!("{}", match why {
+                MathError::NonPositiveLogarithm
+                    => "logarithm of non-positive number",
+                MathError::DivisionByZero
+                    => "division by zero",
+                MathError::NegativeSquareRoot
+                    => "square root of negative number",
+            }),
+            Ok(value) => println!("{}", value),
+        }
+    }
 }
+
+
 
 // `op(x, y)` === `sqrt(ln(x / y))`
 fn op(x: f64, y: f64) -> f64 {
@@ -53,5 +76,6 @@ fn op(x: f64, y: f64) -> f64 {
 }
 
 fn main() {
+    checked::op(20.0, 10.0);
     println!("{}", op(1.0, 10.0));
 }
