@@ -34,14 +34,13 @@ fn main() {
     // Create a directory, returns `io::Result<()>`
     match fs::create_dir("a") {
         Err(why) => println!("! {:?}", why.kind()),
-        Ok(_) => {},
+        Ok(_) => {}
     }
 
     println!("`echo hello > a/b.txt`");
     echo("hello", &Path::new("a/b.txt")).unwrap_or_else(|why| {
         println!("! {:?}", why.kind());
     });
-
 
     println!("`mkdir -p a/c/d`");
     fs::create_dir_all("a/c/d").unwrap_or_else(|why| {
@@ -70,9 +69,11 @@ fn main() {
     // Read the contents of a directory, returns `io::Result<Vec<Path>>`
     match fs::read_dir("a") {
         Err(why) => println!("! {:?}", why.kind()),
-        Ok(paths) => for path in paths {
-            println!("> {:?}", path.unwrap().path());
-        },
+        Ok(paths) => {
+            for path in paths {
+                println!("> {:?}", path.unwrap().path());
+            }
+        }
     }
 
     println!("`rm a/c/e.txt`");

@@ -14,7 +14,7 @@ fn drink(drink: Option<&str>) {
     // receives a `None`.
     let inside = drink.unwrap();
     if inside == "lemonade" {
-        panic!("AAAaaaa!!!!"); 
+        panic!("AAAaaaa!!!!");
     }
 
     println!("I love {}s!!!!!", inside);
@@ -47,7 +47,6 @@ impl Person {
     }
 }
 
-
 fn main() {
     let water = Some("water");
     let lemonade = Some("lemonade");
@@ -58,7 +57,7 @@ fn main() {
     give_adult(void);
 
     let coffee = Some("coffee");
-    let nothing:Option<&str> = None;
+    let nothing: Option<&str> = None;
 
     drink(coffee);
     // drink(nothing); <- this will fail
